@@ -27,5 +27,7 @@ void main() {
   ededler.addAll([...saitler]);
   print(ededler);
 
-  // List<int> list = [];
+  List<int?> list = [];
+  list.add(null);
+  print(list);
 }

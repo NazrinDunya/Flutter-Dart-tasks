@@ -46,25 +46,22 @@ void main() {
 
   //==================================
   Months(String days) {
-  switch (days) {
-    case "September":
-      print("30 gün");
-      break;
-    case "October":
-      print("31 gün");
-      break;
-    case "November":
-      print("30 gün");
-      break;
-    case "December":
-      print("31 gün");
-      break;
-    default:
+    switch (days) {
+      case "September":
+        print("30 gün");
+        break;
+      case "October":
+        print("31 gün");
+        break;
+      case "November":
+        print("30 gün");
+        break;
+      case "December":
+        print("31 gün");
+        break;
+      default:
+    }
   }
-}
 
   Months("December");
-
-  
 }
-
