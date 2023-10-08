@@ -45,7 +45,10 @@ void main() {
   print(biggest);
 
   //==================================
-  Months(String days) {
+
+  months("December");
+}
+months(String days) {
     switch (days) {
       case "September":
         print("30 gün");
@@ -62,6 +65,3 @@ void main() {
       default:
     }
   }
-
-  Months("December");
-}
