@@ -1,3 +1,4 @@
+
 void main() {
   // böyük hərflə başlayanları çap et
   print(list.where((element) => element[0] == element[0].toUpperCase()));
@@ -40,19 +41,19 @@ enum Universities { bdu, unec, aztu, bmu, bsu }
 example(Universities name) {
   switch (name) {
     case Universities.bdu:
-      print("Universities.bdu.name");
+      print(Universities.bdu.name);
       break;
     case Universities.unec:
-      print("Universities.unec.name");
+      print(Universities.unec.name);
       break;
     case Universities.aztu:
-      print("Universities.aztu.name");
+      print(Universities.aztu.name);
       break;
     case Universities.bmu:
-      print("Universities.bmu.name");
+      print(Universities.bmu.name);
       break;
     case Universities.bsu:
-      print("Universities.bsu.name");
+      print(Universities.bsu.name);
       break;
     default:
   }
