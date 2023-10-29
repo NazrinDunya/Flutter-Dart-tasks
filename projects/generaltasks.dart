@@ -1,26 +1,49 @@
 /*List<Map<String, dynamic>> tipində 3 elementdən ibarət list yaratmaq, map a və b keylərindən ibarət 
 olsun. Sonra for ilə həmin elementlərin 'a' keylərinin dəyərlərini çap eləsin.*/
-import 'dart:math';
+import 'dart:math' as math;
 
 void main() {
-  for (var element in list) {
-    var value = element["a"];
-    print(value);
-  }
-  //
+  // for (var element in list) {
+  //   var value = element["a"];
+  //   print(value);
+  // }
+
   final tesla = Car(name: "Tesla");
   final mercedes = Car(name: 'Mercedes');
   tesla.electric();
   mercedes.withFuel();
   final finallist = MAX();
   //
+  //1ci usul
   finallist.getMax([14, 99, 5, 101, 65, 43, 43, 2, 2, 2, 100, 52]);
+  //2ci usul
+  // List list = [4, 7,12,34,56,78,98];
+  // var max = list[0];
+  // for (var i = 1; i < list.length; i++) {
+  //   if (list[i] > max) max = list[i];
+  // }
+  // print(max);
+  //
+  final dog = Dog(name: "Haski");
+  final cat = Cat(name: "Lina");
+  sound(cat);
+  sound(dog);
   //
   final carMercedes = Mac(price: 100000);
-  final carBMW = Mac(price: 200000);
+  final carBMW = Mac(price: 100000);
   print(carBMW == carMercedes);
   //
-  
+  // List maxint = [10, 20];
+  // print(maxint.max());
+  //
+  final resultt = defaultfunk();
+  print(resultt);
+  //
+  example(Model.honor);
+  //
+  final map = Me(age: 22, height: 159);
+  final memap = map.copyWith(age: 45);
+  print(memap.toJson());
 }
 
 final List<Map<String, dynamic>> list = [
@@ -62,26 +85,30 @@ mixin Electric {
 funksiya yaratmaq və digər classlarda classlarda uyğun override etmək. Sonra main xaricindən sound()
 deyə funksiya yazmaq parametr kimi abstrack class alsın.Sonra digər classları yaradaraq bu funksiyadan 
 istifadə edərək makeSound() funksiyasını çağırmaq.*/
-sound() {
-  final animal = Animal;
-  final dog = Dog();
-  dog.makeSound();
-  final cat = Cat();
-  cat.makeSound();
+void sound(Animal animal) {
+  print(animal.makeSound());
 }
 
 abstract class Animal {
-  void makeSound();
+  final String name;
+  Animal({required this.name});
+  String makeSound();
 }
 
 class Dog extends Animal {
+  Dog({required super.name});
   @override
-  void makeSound() {}
+  String makeSound() {
+    return "${this.name} makes sound";
+  }
 }
 
 class Cat extends Animal {
+  Cat({required super.name});
   @override
-  void makeSound() {}
+  String makeSound() {
+    return "${this.name} makes sound";
+  }
 }
 
 /*MAX adında class yaratmaq. İçində getMax() funksiyasını yaratmaq hansı ki 
@@ -115,8 +142,72 @@ class Mac {
 
   Mac({required this.price});
 }
+// 2ci usul
+// class Mac {
+//   final int price;
+//   Mac({required this.price});
+
+//   bool operator ==(Object other) {
+//     if(identical(this, other)) return true;
+//     return other is Mac && this.price == other.price;
+//   }
+// }
 
 /*Iki ədəddən ibarət listdən böyük ədədi qaytaran extension yazmaq.(dart:math kitabxanasının max
 funksiyasını istifadə edərək.)*/
+extension on List {
+  int max() {
+    return math.max(this.first, this.last);
+  }
+}
 
+/*int? first və second parametrləri alan funksiya yaratmaq. Parametr verilməzsə default olaraq 10 
+dəyərinə malik olsun.*/
+defaultfunk({int? first, int? second}) {
+  return 10;
+}
 
+//enum yazmaq Model adlı. Main içində switch case ilə print(ok) yazdırmaq.(enum içində istədiyiniz
+//fieldləri yazarsınız.)
+enum Model { iphone, samsung, nokia, honor, xiomi }
+
+example(Model model) {
+  switch (model) {
+    case Model.iphone:
+      print("Iphone is ok");
+      break;
+    case Model.samsung:
+      print("Samsung is ok");
+      break;
+    case Model.nokia:
+      print("Nokia is ok");
+      break;
+    case Model.honor:
+      print("Honor is ok");
+      break;
+    case Model.xiomi:
+      print("Xiomi is ok");
+      break;
+    default:
+  }
+}
+//Me adında class yaratmaq.Age, height fieldləri olsun. FromJson(factory), toString, copyWith
+//metodlarını tətbiq etmək.
+
+class Me {
+  final int age;
+  final int height;
+
+  Me({required this.age, required this.height});
+
+  factory Me.fromJson(Map<String, dynamic> map) {
+    return Me(age: map['age'], height: map['height']);
+  }
+  Map<String, dynamic> toJson() {
+    return {'age': age, 'height': height};
+  }
+
+  Me copyWith({int? age, int? height}) {
+    return Me(age: age ?? this.age, height: height ?? this.height);
+  }
+}
